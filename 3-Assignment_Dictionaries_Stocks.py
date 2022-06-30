@@ -23,6 +23,11 @@ print("\n" * 1)
 print("Part Two - Investor Report")
 print("-" * 30)
 
+# pretty printing dictionary
+prettyPrint.pprint(myStocks)
 
-
+print("-" * 30)
+print("\n" * 1)   
+print("Part Two - Investor Report")
+print("-" * 30)
 
