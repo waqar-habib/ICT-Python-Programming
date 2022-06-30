@@ -1,10 +1,4 @@
-#Waqar Habib
 
-#ICT 4370
-#Sun, Jun 26, 2022
-#Assignment 2
-
-# Part One 
 print("\n" * 1)
 print("Part One - Stock Price List")
 print("-" * 30)
