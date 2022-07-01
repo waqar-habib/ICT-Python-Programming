@@ -4,70 +4,60 @@
 #Thu, Jun 30, 2022
 #Assignment 3
 
-#import pprint as prettyPrint
+from curses import meta
+from operator import itemgetter
 
 
 print("Part One - Dictionary")
-#converting previous lists to dictionary
+# previous lists to dictionary
 
-# pretty printing dictionary
-#prettyPrint.pprint(myStocks)
-
-
-
-myStocks = {
-    'META': {
-        'symbol': 'META',
-        'numberShares': 10,
-        'purchasePrice': 325.20,
-        'priceNow': 163.74
+myPortfolio = [{
+    'stockSymbol': 'META',
+    'numberShares': 10,
+    'purchasePrice': 325.20,
+    'priceNow': 163.74
     },
-    'AAPL': {
-        'symbol': 'AAPL',
-        'numberShares': 11,
-        'purchasePrice': 319.91,
-        'priceNow': 131.56
+    {
+    'symbol': 'META',
+    'numberShares': 10,
+    'purchasePrice': 325.20,
+    'priceNow': 163.74
     },
-    'MSFT': {
-        'symbol': 'MSFT',
-        'numberShares': 15,
-        'purchasePrice': 169.75,
-        'priceNow': 247.65
+    {
+    'symbol': 'MSFT',
+    'numberShares': 15,
+    'purchasePrice': 169.75,
+    'priceNow': 247.65
     },
-    'TSLA': {
-        'symbol': 'TSLA',
-        'numberShares': 20,
-        'purchasePrice': 899.94,
-        'priceNow': 650.28
-    }
-}
-'''
+    {
+    'symbol': 'TSLA',
+    'numberShares': 20,
+    'purchasePrice': 899.94,
+    'priceNow': 650.28
+    }               
+]
 
-# gaps
-print("-" * 30)
-print("\n" * 1)   
-print("Part Two - Investor Report")
-print("-" * 30)
-'''
-'''
-for symbol, numberShares in myStocks.items():
-    metaName = {symbol}
-    metaShare = {numberShares}
-    print(metaName)
-    print(symbol)
- '''   
+#create separate dicts for each symbol
 
-for symbol, singleStock in myStocks.items():
-    singleStock['totalPriceAtPurchase'] = singleStock['numberShares'] * singleStock['purchasePrice']
-    totalPriceAtPurchase = singleStock['totalPriceAtPurchase']
-    print(f"Total price at purchase for each stock was {totalPriceAtPurchase}: ")
+meta_dict = {'symbol': "META",'numberShares': 10, 'purchasePrice': 325.20, 'priceNow': 163.74}
+aapl_dict = {'numberShares': 11, 'purchasePrice': 319.91, 'priceNow': 131.56}
+msft_dict = {'numberShares': 15, 'purchasePrice': 169.75, 'priceNow': 247.65}
+tsla_dict = {'numberShares': 20, 'purchasePrice': 899.94, 'priceNow': 650.28}
+
+# for i in meta_dict:
+print(meta_dict['symbol'],':',meta_dict['priceNow'] * meta_dict['numberShares']- meta_dict['purchasePrice'] * meta_dict['numberShares'])
     
-for symbol, singleStock in myStocks.items():
-    singleStock['totalPricePriceNow'] = singleStock['numberShares'] * singleStock['priceNow']
-    totalPricePriceNow = singleStock['totalPricePriceNow']
-    print(f"Total price now for each stock is {totalPricePriceNow}: ")
-    
-for symbol, singleStock in myStocks.items():
-    singleStock['gainLoss'] = singleStock['totalPricePriceNow'] - singleStock['totalPriceAtPurchase']
-    gainLoss = singleStock['gainLoss']
-    print(f"You have gained/lost: {gainLoss} on each stock")  
+# for i in meta_dict:
+#     print(aapl_dict[i])    
+
+# for i in msft_dict:
+#     print(msft_dict[i])  
+
+# for i in tsla_dict:
+#     print(tsla_dict[i])  
+
+#x=5
+#print("I want",x+3,"slices of pizza!")
+
+seq = [x for x in meta_dict.values() if not isinstance(x, str)]
+print(min(seq))
