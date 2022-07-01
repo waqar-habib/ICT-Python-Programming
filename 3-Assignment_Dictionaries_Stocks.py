@@ -40,24 +40,18 @@ myPortfolio = [{
 #create separate dicts for each symbol
 
 meta_dict = {'symbol': "META",'numberShares': 10, 'purchasePrice': 325.20, 'priceNow': 163.74}
-aapl_dict = {'numberShares': 11, 'purchasePrice': 319.91, 'priceNow': 131.56}
-msft_dict = {'numberShares': 15, 'purchasePrice': 169.75, 'priceNow': 247.65}
-tsla_dict = {'numberShares': 20, 'purchasePrice': 899.94, 'priceNow': 650.28}
+aapl_dict = {'symbol': "AAPL",'numberShares': 11, 'purchasePrice': 319.91, 'priceNow': 131.56}
+msft_dict = {'symbol': "MSFT",'numberShares': 15, 'purchasePrice': 169.75, 'priceNow': 247.65}
+tsla_dict = {'symbol': "TSLA",'numberShares': 20, 'purchasePrice': 899.94, 'priceNow': 650.28}
 
 # for i in meta_dict:
-print(meta_dict['symbol'],':',meta_dict['priceNow'] * meta_dict['numberShares']- meta_dict['purchasePrice'] * meta_dict['numberShares'])
-    
-# for i in meta_dict:
-#     print(aapl_dict[i])    
+print(meta_dict['symbol'],'-----',meta_dict['priceNow'] * meta_dict['numberShares']- meta_dict['purchasePrice'] * meta_dict['numberShares'])
 
-# for i in msft_dict:
-#     print(msft_dict[i])  
+print(aapl_dict['symbol'],'-----',aapl_dict['priceNow'] * aapl_dict['numberShares']- aapl_dict['purchasePrice'] * aapl_dict['numberShares'])
 
-# for i in tsla_dict:
-#     print(tsla_dict[i])  
+print(msft_dict['symbol'],'-----',msft_dict['priceNow'] * msft_dict['numberShares']- msft_dict['purchasePrice'] * msft_dict['numberShares'])
 
-#x=5
-#print("I want",x+3,"slices of pizza!")
+print(tsla_dict['symbol'],'-----',tsla_dict['priceNow'] * tsla_dict['numberShares']- tsla_dict['purchasePrice'] * tsla_dict['numberShares'])
 
 seq = [x for x in meta_dict.values() if not isinstance(x, str)]
-print(min(seq))
+#print(min(seq))
