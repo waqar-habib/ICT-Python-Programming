@@ -7,26 +7,11 @@ myStocks = {
     'MSFT': [15, 169.75, 247.65 ],
     'TSLA': [20, 899.94, 650.28 ],   
 }
-
-#for loop
-
-for symbol, x in myStocks.items():
-    print(f"\n{symbol}")
-    for y in x:
-        print(f"\n{y}")
-        
-
-
-'''
-favorite_languages = {
-'jen': ['python', 'ruby'],
-'sarah': ['c'],
-'edward': ['ruby', 'go'],
-'phil': ['python', 'haskell'],
-}
-for name, languages in favorite_languages.items():
-    print(f"\n{name.title()}'s favorite languages are:")
-    for language in languages:
-        print(f"\t{language.title()}")
-        
-        '''
+   
+for symbol in myStocks:
+     numShares = myStocks[symbol][0]
+     pricePurchase = myStocks[symbol][1]
+     priceNow = myStocks[symbol][2]
+     gainLoss = numShares*priceNow - numShares*pricePurchase
+     print(f"Total Gain or Loss on {symbol} stock: {gainLoss}")
+     
