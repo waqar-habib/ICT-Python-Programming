@@ -44,6 +44,7 @@ aapl_dict = {'symbol': "AAPL",'numberShares': 11, 'purchasePrice': 319.91, 'pric
 msft_dict = {'symbol': "MSFT",'numberShares': 15, 'purchasePrice': 169.75, 'priceNow': 247.65}
 tsla_dict = {'symbol': "TSLA",'numberShares': 20, 'purchasePrice': 899.94, 'priceNow': 650.28}
 
+
 # for i in meta_dict:
 print(meta_dict['symbol'],'-----',meta_dict['priceNow'] * meta_dict['numberShares']- meta_dict['purchasePrice'] * meta_dict['numberShares'])
 
@@ -53,5 +54,9 @@ print(msft_dict['symbol'],'-----',msft_dict['priceNow'] * msft_dict['numberShare
 
 print(tsla_dict['symbol'],'-----',tsla_dict['priceNow'] * tsla_dict['numberShares']- tsla_dict['purchasePrice'] * tsla_dict['numberShares'])
 
-seq = [x for x in meta_dict.values() if not isinstance(x, str)]
-#print(min(seq))
+# seq = [x for x in meta_dict.values() if not isinstance(x, str)]
+# print(min(seq))
+
+tslaPriceNow = "${:,.2f}".format(tsla_dict['priceNow'])
+tslaPurchasePrice = "${:,.2f}".format(tsla_dict['purchasePrice'])
+
