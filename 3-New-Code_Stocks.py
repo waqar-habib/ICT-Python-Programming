@@ -37,7 +37,7 @@ for symbol in myStocks:
     gainLoss = numShares*priceNow -      numShares*pricePurchase
     print(f"Gain or Loss: {currency}")
     
-# Conditional to print the stock with highest gain or loss
+# Conditional to print the stock with highest gain/loss
 if gainLoss >= 0:
     currency = "${:,.2f}".format(gainLoss)
     print(f"\nThe highest earning stock is {symbol} with a total gain of: {currency}")
