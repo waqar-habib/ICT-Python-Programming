@@ -1,35 +1,36 @@
 #Waqar Habib
 
 #ICT 4370
-#Sun, Jun 26, 2022
-#Assignment 2
+#Wed, Jul 7, 2022
+#Assignment 4
 
-# Part One 
-print("\n" * 1)
-print("Part One - Stock Price List")
-print("-" * 30)
+# 1. Move the code used to calculate the loss/gain to a function. Execute it. 
 
-symbols = ["META", "AAPL", "MSFT", "TSLA"]
-numberShares = [10,11,15,20]
-pricePurchase = [325.20, 319.91, 169.75,899.94]
-priceNow = [163.74,131.56,247.65,650.28]
+# Initiating Lists
+# symbols = ["META", "AAPL", "MSFT", "TSLA"]
+# numberShares = [10,11,15,20]
+# pricePurchase = [325.20, 319.91, 169.75,899.94]
+# priceNow = [163.74,131.56,247.65,650.28]
 totalNow = []
 totalPurchase = []
 gainLoss = []
 
-print("Stock Symbols"); print(symbols)
-print("\n" * 1)
-print("Number of Shares"); print(numberShares)
-print("\n" * 1)
-print("Purchase Price"); print(pricePurchase)
-print("\n" * 1)
-print("Current Price"); print(priceNow)
+# Creating a function to print lists
+def calculateGainLoss(symbols, numberShares, pricePurchase, priceNow):
+  for stocks in symbols, numberShares, pricePurchase, priceNow:
+    print(stocks)
+    
+#Passing Lists
+symbols = ["A", "B", "C", "D"]
+numberShares = [10,11,15,20]
+pricePurchase = [5, 10, 20, 30]
+priceNow = [2,5,40,15]
+
+# Initializing the calculateGainLoss function
+calculateGainLoss(symbols, numberShares, pricePurchase, priceNow)
 
 
-print("-" * 30)
-print("\n" * 1)
-
-
+'''
 print("Part Two - Investor Report")
 print("-" * 30)
 
@@ -43,7 +44,7 @@ for value1, value2 in zip(pricePurchase,numberShares):
 for value1, value2 in zip(totalNow,totalPurchase):
     gainLoss.append(value1-value2) 
         
-
+  
 print('\n Stock Ownership for John:')
 
 # Format each stock symbol, no. shares and their and corresponding gain/loss:
@@ -101,3 +102,10 @@ else:
   
     print("\n" * 1)
     
+'''
+# Extra formatting code
+
+# Part One 
+# print("\n" * 1)
+# print("Part One - Stock Price List")
+# print("-" * 30)
