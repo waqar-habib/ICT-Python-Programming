@@ -15,8 +15,10 @@ increaseYr2 = []
 # Function that returns the weight after year 1 and year 2
 def weightIncrease(weights,increaseYr1,increaseYr2):
     for index in range(len(names)):
+        
         # multiplying by factor of 15% for year 1 
         increaseYr1.append(weights[index]+(weights[index]*0.15))
+        
         # adding a factor of 10% for year 2 in year 1 weights
         increaseYr2.append(increaseYr1[index] + (increaseYr1[index]*0.10))
 
