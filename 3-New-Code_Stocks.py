@@ -5,7 +5,7 @@
 #Assignment 3
  
 
-#ln:9-14 - Looping through each stock from portfolio   
+#ln:9-14 - Converted previous lists into a dictionary   
 myStocks = {
     'META': [10, 325.20, 163.74 ],
     'AAPL': [11, 319.91, 131.56 ],
@@ -13,7 +13,7 @@ myStocks = {
     'TSLA': [20, 899.94, 650.28 ],   
 }
         
-#ln:16-25 - Gain/Loss calculation for each stock from portfolio          
+#ln:16-25 - Looping through each stock from portfolio and performing gain/Loss calculation for each stock from portfolio          
 for symbol in myStocks:
      numShares = myStocks[symbol][0]
      pricePurchase = myStocks[symbol][1]
