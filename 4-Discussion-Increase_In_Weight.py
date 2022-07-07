@@ -45,7 +45,7 @@ for index in range(len(names)):
           f"{increaseYr2[index]:.1f} lbs."
         )
     
-#Find the fattestDog using the max method
+#Find and printing the fattestDog using the max method
 fattestDog = max(weights)
 indexOfFattestDog = weights.index(fattestDog)
 fattestDogName = names[indexOfFattestDog]
