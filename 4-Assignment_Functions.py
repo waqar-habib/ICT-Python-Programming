@@ -1,13 +1,16 @@
 
 
-
+# Initiating lists
 symbols = ["A", "B", "C", "D"]
 numberShares = [10,11,15,20]
 pricePurchase = [40, 10, 20, 30]
 priceNow = [30,25,40,15]
+totalNow = []
+totalPurchase = []
+gainLoss = []
 
 # Creating a function to print lists
-def calculateGainLoss(symbols, numberShares, pricePurchase, priceNow):
+def printTable(symbols, numberShares, pricePurchase, priceNow):
     # Header
     print(f'-'*65 + f'|')
     print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5, f'|' )
@@ -21,85 +24,23 @@ def calculateGainLoss(symbols, numberShares, pricePurchase, priceNow):
         print(f'-'*65 + f'|')
         
 # Initializing the calculateGainLoss function
-calculateGainLoss(symbols, numberShares, pricePurchase, priceNow)
+printTable(symbols, numberShares, pricePurchase, priceNow)
 
+# Creating a function to print lists
+def calculateGainLoss(numberShares, pricePurchase, priceNow):
+    #Calulcating Gain/Loss)
+    for value1, value2 in zip(priceNow,numberShares):
+        totalNow.append(value1*value2)
 
-'''
-print("Part Two - Investor Report")
-print("-" * 30)
-
-#Calulcating Gain/Loss)
-for value1, value2 in zip(priceNow,numberShares):
-    totalNow.append(value1*value2)
-
-for value1, value2 in zip(pricePurchase,numberShares):
-    totalPurchase.append(value1*value2)
+    for value1, value2 in zip(pricePurchase,numberShares):
+        totalPurchase.append(value1*value2)
     
-for value1, value2 in zip(totalNow,totalPurchase):
-    gainLoss.append(value1-value2) 
+    for value1, value2 in zip(totalNow,totalPurchase):
+        gainLoss.append(value1-value2)
         
-  
-print('\n Stock Ownership for John:')
+    print(gainLoss)
 
-# Format each stock symbol, no. shares and their and corresponding gain/loss:
-# Prof: I know it's a lot of lines, but I just wanted to separate them for my sanity
-
-print(f'-'*45 + f'|')
-print(f"|"+ 
-      '-' * 3 + 
-      'Stock Name' + 
-      "-" *5 + 
-      'Shares' +
-      "-" *6 + 
-      'Gain/Loss' + 
-      "-" *5 + f'|' )
-print(f'-'*45 + f'|')
-
-#for loop to loop through all stocks
-for index, oneStock in enumerate(symbols):
-    currency = "${:,.2f}".format(gainLoss[index])
-    print((f'|{oneStock.title().upper()}') +'-' * 
-          (18-len(oneStock)) + f'|{numberShares[index]}'+'-'*6 + f'|{currency}'+'-'*6 + f'|')
-    print(f'-'*45 + f'|')
-
-#For loop to print each in a separate line
-index = 0
-for x in symbols:
-    spacesRow = 12-len(symbols[index])
-    name = symbols[index]
-    weight = {gainLoss[index]}
-    index += 1
-
-
-#ln85-105 calculation for the highest/lowest value stock symbols/gain or loss
-highestValue = max(gainLoss)
-highestSymbol = max(symbols)
-
-lowestValue = min(gainLoss)
-lowestSymbol = min(symbols)
-
-print("\n" * 1)
-
-if highestValue >= 0:
-    print(f"The highest earning stock is: {highestSymbol} with a loss of:")
-    print("${:,.2f}".format(highestValue))
-else:
-    print(f"The lowest earning stock is: {lowestSymbol} with a loss of:")
-    print("${:,.2f}".format(lowestValue))
-
-if lowestValue >= 0:
-    print(f"The highest earning stock is: {highestSymbol} with a loss of:")
-    print("${:,.2f}".format(highestValue))
-else:
-    print(f"The lowest earning stock is: {lowestSymbol} with a loss of:")
-    print("${:,.2f}".format(lowestValue))
-  
-    print("\n" * 1)
     
-'''
-# Extra formatting code
-
-# Part One 
-# print("\n" * 1)
-# print("Part One - Stock Price List")
-# print("-" * 30)
+        
+# Initializing the calculateGainLoss function
+calculateGainLoss(numberShares, pricePurchase, priceNow)
