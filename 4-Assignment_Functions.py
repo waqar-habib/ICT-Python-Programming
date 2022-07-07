@@ -11,21 +11,30 @@
 # numberShares = [10,11,15,20]
 # pricePurchase = [325.20, 319.91, 169.75,899.94]
 # priceNow = [163.74,131.56,247.65,650.28]
-totalNow = []
-totalPurchase = []
-gainLoss = []
+# totalNow = []
+# totalPurchase = []
+# gainLoss = []
+
+
+symbols = ["A", "B", "C", "D"]
+numberShares = [10,11,15,20]
+pricePurchase = [40, 10, 20, 30]
+priceNow = [30,25,40,15]
 
 # Creating a function to print lists
 def calculateGainLoss(symbols, numberShares, pricePurchase, priceNow):
-  for stocks in symbols, numberShares, pricePurchase, priceNow:
-    print(stocks)
+    # Header
+    print(f'-'*45 + f'|')
+    print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Gain/Loss' + "-" *5 + f'|' )
+    print(f'-'*45 + f'|')
     
-#Passing Lists
-symbols = ["A", "B", "C", "D"]
-numberShares = [10,11,15,20]
-pricePurchase = [5, 10, 20, 30]
-priceNow = [2,5,40,15]
-
+    #for loop to loop through all stocks
+    for index, oneStock in enumerate(symbols):
+        currency = "${:,.2f}".format(pricePurchase[index], priceNow[index])
+        print((f'|{oneStock.title().upper()}') +'-' * 
+            (5-len(oneStock)) + f'|{numberShares[index]}'+'-'*10 + f'|{currency}'+'-'*6 + f'|{currency}'+'-'*6+ f'|') 
+        print(f'-'*45 + f'|')
+        
 # Initializing the calculateGainLoss function
 calculateGainLoss(symbols, numberShares, pricePurchase, priceNow)
 
