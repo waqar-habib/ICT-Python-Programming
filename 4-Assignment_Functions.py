@@ -1,4 +1,6 @@
 
+from datetime import date
+from datetime import timedelta
 
 # Initiating lists
 symbols = ["A", "B", "C", "D"]
@@ -44,6 +46,30 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
         #prints separator
         print(f'-'*79 + f'|')
         
+        # def calcYoY(gainLoss,pricePurchase):
+        #     currentDate = date.today()
+        #     purchaseDate = currentDate - timedelta(days = 1801)
+            
+        #     print(
+        #         ((gainLoss[index]/pricePurchase[index]))
+        #     )
+        
+        # calcYoY(gainLoss,priceNow)
+        
+        
 
 # Initializing the calculateGainLoss function - passing parameters
 printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
+
+print('*'*100)
+print("YoY Calculation")
+print('*'*100)
+
+# Get today's date
+currentDate = date.today()
+print("Today is: ", currentDate)
+ 
+# Yesterday date
+purchaseDate = currentDate - timedelta(days = 1801)
+print("Purchase Date was: ", purchaseDate)
+
