@@ -1,25 +1,49 @@
-# WORKING CODE: 07/09 @ 4:26; prints table no repeat
+#working code WITH GAIN LOSS column - 07/09/22 @ 4:34 pm
+
+# Initiating lists
 symbols = ["A", "B", "C", "D"]
 numberShares = [10,11,15,20]
 pricePurchase = [40, 10, 20, 30]
 priceNow = [30,25,40,15]
+totalNow = []
+totalPurchase = []
+gainLoss = []
 
-# Creating a function to print lists
-def calculateGainLoss(symbols, numberShares, pricePurchase, priceNow):
-    # Header
-    print(f'-'*65 + f'|')
-    print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5, f'|' )
-    print(f'-'*65 + f'|')
+# prints header
+print(f'-'*79 + f'|')
+print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5 + 'Gain/Loss'+'-'*5, f'|' )
+print(f'-'*79 + f'|')
+
+# Creating a function to print lists - passing positional arguments
+def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
     
     #for loop to loop through all stocks
     for index, oneStock in enumerate(symbols):
-        currencyPP = "${:,.2f}".format(pricePurchase[index])
-        currencyPN = "${:,.2f}".format(priceNow[index])
-        print(f"|" + f"-"*7 + (f"{oneStock}") +'-' * 
-            (8-len(oneStock)) + f"-"*4 + f'|{numberShares[index]}'+'-'*10 + f'|{currencyPP}'+'-'*11 + f'|{currencyPN}'+'-'*7+ f'|') 
-        print(f'-'*65 + f'|')
         
-# Initializing the calculateGainLoss function
-calculateGainLoss(symbols, numberShares, pricePurchase, priceNow)
+        #Calulcating Gain/Loss
+        for value1, value2 in zip(priceNow,numberShares):
+            totalNow.append(value1*value2)
 
+        for value1, value2 in zip(pricePurchase,numberShares):
+            totalPurchase.append(value1*value2)
+    
+        for value1, value2 in zip(totalNow,totalPurchase):
+            gainLoss.append(value1-value2)
+        
+        # prints each stock in separate lines
+        print(f"|" + f"-"*7 + (f"{oneStock}") +'-' * 
+            (8-len(oneStock)) + f"-"*4 + f'|{numberShares[index]}'+'-'*10 
+            + '${:,.2f}'.format(pricePurchase[index]) 
+            +'-'*11 
+            + '${:,.2f}'.format(priceNow[index])
+            +'-'*8 
+            + '${:,.2f}'.format(gainLoss[index])
+            +'-'*8 
+            + f'|') 
+        
+        #prints separator
+        print(f'-'*79 + f'|')
+        
 
+# Initializing the calculateGainLoss function - passing parameters
+printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
