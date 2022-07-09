@@ -1,4 +1,4 @@
-#working code created function outside; calling inside for loop - 07/09/22 @ 4:50 pm
+#working code Calculated YoY successfully, created YoY function - 07/09/22 @ 5:39 pm
 
 # Initiating lists
 symbols = ["A", "B", "C", "D"]
@@ -28,11 +28,12 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
     
     #for loop to loop through all stocks
     for index, oneStock in enumerate(symbols):
-
+        
         # Calling calculateGainLoss function from inside the for loop
         calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurchase)
-            
+          
         # prints each stock in separate lines
+        
         print(f"|" + f"-"*7 + (f"{oneStock}") +'-' * 
                 (8-len(oneStock)) + f"-"*4 + f'|{numberShares[index]}'+'-'*10 
                 + '${:,.2f}'.format(pricePurchase[index]) 
@@ -42,9 +43,22 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
                 + '${:,.2f}'.format(gainLoss[index])
                 +'-'*8 
                 + f'|') 
+        
         #prints separator
         print(f'-'*79 + f'|')
+        
+        
 
 # Initializing the calculateGainLoss function - passing parameters
 printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
+
+
+# function to calculate year over year yield    
+def calculateYoY (symbols, gainLoss, pricePurchase):
+    for j in range(0, len(symbols)):
+        YoY = ((gainLoss[j]/pricePurchase[j])/4.93)*100
+        print('Year over year yield:','{:,.2f}'.format(YoY),'%')
+    
+calculateYoY (symbols, gainLoss, pricePurchase)
+    
 
