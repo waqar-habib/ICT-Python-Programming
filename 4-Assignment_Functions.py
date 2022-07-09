@@ -13,7 +13,7 @@ gainLoss = []
 
 # prints header
 print(f'-'*79 + f'|')
-print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5 + 'Gain/Loss'+'-'*5, f'|' )
+print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5 + 'Gain/Loss'+'-'*5 + 'YoY'+'-'*5, f'|' )
 print(f'-'*79 + f'|')
 
 # Second function to calculate Gain or Loss
@@ -34,9 +34,13 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
         
         # Calling calculateGainLoss function from inside the for loop
         calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurchase)
-          
-        # prints each stock in separate lines
         
+        todaysDate = date.today()
+        purchaseDate = date(2017, 8, 1)
+        daysSincePurchase = ((todaysDate-purchaseDate).days)/365
+        
+        
+        # prints each stock in separate lines
         print(f"|" + f"-"*7 + (f"{oneStock}") +'-' * 
                 (8-len(oneStock)) + f"-"*4 + f'|{numberShares[index]}'+'-'*10 
                 + '${:,.2f}'.format(pricePurchase[index]) 
@@ -44,6 +48,8 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
                 + '${:,.2f}'.format(priceNow[index])
                 +'-'*8 
                 + '${:,.2f}'.format(gainLoss[index])
+                +'-'*8
+                + '${:,.2f}'.format((((gainLoss[index]/pricePurchase[index])/daysSincePurchase)*100))
                 +'-'*8 
                 + f'|') 
         
@@ -54,17 +60,3 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
 # Initializing the calculateGainLoss function - passing parameters
 printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
 
-
-# Third function to calculate year over year yield    
-def calculateYoY (symbols, gainLoss, pricePurchase):
-    
-    todaysDate = date.today()
-    purchaseDate = date(2017, 8, 1)
-    daysSincePurchase = ((todaysDate-purchaseDate).days)/365
-    
-    for j in range(0, len(symbols)):
-        YoY = ((gainLoss[j]/pricePurchase[j])/daysSincePurchase)*100
-        print('Year over year yield:','{:,.2f}'.format(YoY),'%')
-    
-calculateYoY (symbols, gainLoss, pricePurchase)
-    
