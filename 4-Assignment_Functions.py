@@ -1,4 +1,4 @@
-# WORKING CODE: 07/09 @ 4:26; prints table perfectly
+# WORKING CODE: 07/09 @ 4:26; prints table no repeat
 symbols = ["A", "B", "C", "D"]
 numberShares = [10,11,15,20]
 pricePurchase = [40, 10, 20, 30]
