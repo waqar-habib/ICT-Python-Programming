@@ -12,9 +12,9 @@ totalPurchase = []
 gainLoss = []
 
 # prints header
-print(f'-'*79 + f'|')
-print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5 + 'Gain/Loss'+'-'*5 + 'YoY'+'-'*5, f'|' )
-print(f'-'*79 + f'|')
+print(f'-'*88 + f'|')
+print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5 + 'Gain/Loss'+'-'*9 + 'YoY'+'-'*13, f'|' )
+print(f'-'*93 + f'|')
 
 # Second function to calculate Gain or Loss
 def calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurchase):
@@ -46,15 +46,15 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
                 + '${:,.2f}'.format(pricePurchase[index]) 
                 +'-'*11 
                 + '${:,.2f}'.format(priceNow[index])
-                +'-'*8 
+                +'-'*9
                 + '${:,.2f}'.format(gainLoss[index])
-                +'-'*8
+                +'-'*9
                 + '${:,.2f}'.format((((gainLoss[index]/pricePurchase[index])/daysSincePurchase)*100))
-                +'-'*8 
+                +'-'*5
                 + f'|') 
         
         #prints separator
-        print(f'-'*79 + f'|')
+        print(f'-'*93 + f'|')
         
         
 # Initializing the calculateGainLoss function - passing parameters
