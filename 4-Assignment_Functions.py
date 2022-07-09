@@ -16,6 +16,7 @@ print(f'-'*79 + f'|')
 print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5 + 'Gain/Loss'+'-'*5, f'|' )
 print(f'-'*79 + f'|')
 
+# Second function to calculate Gain or Loss
 def calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurchase):
     #Calulcating Gain/Loss
     for value1, value2 in zip(priceNow,numberShares):
@@ -25,7 +26,7 @@ def calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurc
     for value1, value2 in zip(totalNow,totalPurchase):
         gainLoss.append(value1-value2)
 
-# Creating a function to print lists - passing positional arguments
+# First function: Moved code from last week in a separate function - passing positional arguments
 def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
     
     #for loop to loop through all stocks
@@ -54,7 +55,7 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
 printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
 
 
-# function to calculate year over year yield    
+# Third function to calculate year over year yield    
 def calculateYoY (symbols, gainLoss, pricePurchase):
     
     todaysDate = date.today()
