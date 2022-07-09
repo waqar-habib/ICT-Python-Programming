@@ -1,4 +1,6 @@
-#working code Calculated YoY successfully, created YoY function - 07/09/22 @ 5:39 pm
+# working code used datetime successfully - 07/09/22 @ 5:48 pm
+
+from datetime import date
 
 # Initiating lists
 symbols = ["A", "B", "C", "D"]
@@ -48,17 +50,20 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
         print(f'-'*79 + f'|')
         
         
-
 # Initializing the calculateGainLoss function - passing parameters
 printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
 
 
 # function to calculate year over year yield    
 def calculateYoY (symbols, gainLoss, pricePurchase):
+    
+    todaysDate = date.today()
+    purchaseDate = date(2017, 8, 1)
+    daysSincePurchase = ((todaysDate-purchaseDate).days)/365
+    
     for j in range(0, len(symbols)):
-        YoY = ((gainLoss[j]/pricePurchase[j])/4.93)*100
+        YoY = ((gainLoss[j]/pricePurchase[j])/daysSincePurchase)*100
         print('Year over year yield:','{:,.2f}'.format(YoY),'%')
     
 calculateYoY (symbols, gainLoss, pricePurchase)
     
-
