@@ -25,7 +25,7 @@ def calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurc
         totalPurchase.append(value1*value2)
     for value1, value2 in zip(totalNow,totalPurchase):
         gainLoss.append(value1-value2)
-
+        
 # First function: Moved code from last week in a separate function - passing positional arguments
 def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
     
@@ -38,8 +38,7 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
         todaysDate = date.today()
         purchaseDate = date(2017, 8, 1)
         daysSincePurchase = ((todaysDate-purchaseDate).days)/365
-        
-        
+    
         # prints each stock in separate lines
         print(f"|" + f"-"*7 + (f"{oneStock}") +'-' * 
                 (8-len(oneStock)) + f"-"*4 + f'|{numberShares[index]}'+'-'*10 
@@ -56,7 +55,21 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
         #prints separator
         print(f'-'*93 + f'|')
         
-        
 # Initializing the calculateGainLoss function - passing parameters
 printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
+
+# Third function to calculate year over year yield    
+def calculateYoY (symbols, gainLoss, pricePurchase):
+        todaysDate = date.today()
+        purchaseDate = date(2017, 8, 1)
+        daysSincePurchase = ((todaysDate-purchaseDate).days)/365
+        
+        for j in range(0, len(symbols)):
+            YoY = ((gainLoss[j]/pricePurchase[j])/daysSincePurchase)*100
+            if YoY >= 0:
+                print(f"You gained {'{:,.2f}'.format(YoY)}% on your {symbols[j]} stock")
+            else:
+                print(f"You lost {'{:,.2f}'.format(YoY)}% on your {symbols[j]} stock")
+    
+calculateYoY(symbols, gainLoss, pricePurchase)
 
