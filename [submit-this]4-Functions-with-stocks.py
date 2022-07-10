@@ -86,6 +86,8 @@ to Do:
 1. Fix formatting
 2. move funtions to modules
 3. refactor 2nd function calculateGainLoss
+4. Purchase date for stocks M,F,IBM is 3 different new ones. All older ones is 8/1/2017
+5. See if you have to include dictionaries...
 
 '''
 
