@@ -3,18 +3,18 @@
 from datetime import date
 
 # Initiating lists
-symbols = ["A", "B", "C", "D"]
-numberShares = [10,11,15,20]
-pricePurchase = [40, 10, 20, 30]
-priceNow = [30,25,40,15]
+symbols = ["GOOGLE", "MSFT", "RDS-A", "AIG","FB","M","F","IBM"]
+numberShares = [125,85,400,235,130,425,85,80]
+pricePurchase = [772.88, 56.60, 49.58, 54.21, 124.31,30.30,12.58,150.37]
+priceNow = [941.53,73.04,55.74,65.27, 175.45, 23.98,10.95,145.30]
 totalNow = []
 totalPurchase = []
 gainLoss = []
 
 # prints header
-print(f'-'*88 + f'|')
+print(f'-'*100 + f'|')
 print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5 + 'Gain/Loss'+'-'*9 + 'YoY'+'-'*13, f'|' )
-print(f'-'*93 + f'|')
+print(f'-'*100 + f'|')
 
 # Second function to calculate Gain or Loss
 def calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurchase):
@@ -44,12 +44,12 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
         print(f"|" + f"-"*7 + (f"{oneStock}") +'-' * 
                 (8-len(oneStock)) + f"-"*4 + f'|{numberShares[index]}'+'-'*10 
                 + '${:,.2f}'.format(pricePurchase[index]) 
-                +'-'*11 
+                +'-'*12 
                 + '${:,.2f}'.format(priceNow[index])
                 +'-'*9
                 + '${:,.2f}'.format(gainLoss[index])
-                +'-'*9
-                + '${:,.2f}'.format((((gainLoss[index]/pricePurchase[index])/daysSincePurchase)*100))
+                +'-'*10
+                + f"{'{:,.2f}'.format(((gainLoss[index]/pricePurchase[index])/daysSincePurchase)*100)}%"
                 +'-'*5
                 + f'|') 
         
