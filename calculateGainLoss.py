@@ -1,3 +1,5 @@
+# Second function to calculate Gain or Loss
+
 def calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurchase, gainLoss):
     #Calulcating Gain/Loss
     for value1, value2 in zip(priceNow,numberShares):
