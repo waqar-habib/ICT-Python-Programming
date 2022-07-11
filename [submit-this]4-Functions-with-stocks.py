@@ -1,6 +1,7 @@
 # working code added calculate YoY function to print statements under the table - 07/09/22 @ 11:47 pm
 
 from datetime import date
+from calculateGainLoss import calculateGainLoss
 
 # Initiating lists
 symbols = ["GOOGLE", "MSFT", "RDS-A", "AIG","FB","M","F","IBM"]
@@ -17,14 +18,7 @@ print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchas
 print(f'-'*100 + f'|')
 
 # (ln 20-27/needs refactoring) Second function to calculate Gain or Loss
-def calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurchase):
-    #Calulcating Gain/Loss
-    for value1, value2 in zip(priceNow,numberShares):
-        totalNow.append(value1*value2)
-    for value1, value2 in zip(pricePurchase,numberShares):
-        totalPurchase.append(value1*value2)
-    for value1, value2 in zip(totalNow,totalPurchase):
-        gainLoss.append(value1-value2)
+
         
 # (ln 30-59) First function: Moved code from last week in a separate function - passing positional arguments
 def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
@@ -33,7 +27,7 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
     for index, oneStock in enumerate(symbols):
         
         # Calling calculateGainLoss function from inside the for loop
-        calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurchase)
+        calculateGainLoss(priceNow, pricePurchase, numberShares, totalNow, totalPurchase, gainLoss)
         
         # Calculating daysSincePurchase to plug into ln 52
         todaysDate = date.today()
@@ -61,8 +55,6 @@ printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
 
 # Third function to calculate year over year yield    
 def calculateYoY (symbols, gainLoss, pricePurchase):
-       
-        # (ln 65-67) Had to repeat daysSincePurchase code because couldn't figure out how to call it in printTable function in line 38-41 :(
             
         todaysDate = date.today()
         purchaseDate = date(2017, 8, 1)
