@@ -22,15 +22,14 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
         print(f" " + f" "*7 + (f"{oneStock}") +' ' * 
                 (8-len(oneStock)) + f" "*4 + f' {numberShares[index]}'+' '*10 
                 + '${:,.2f}'.format(pricePurchase[index]) 
-                +' '*12 
+                +' '*15 
                 + '${:,.2f}'.format(priceNow[index])
-                +' '*9
+                +' '*15
                 + '${:,.2f}'.format(gainLoss[index])
-                +' '*10
+                +' '*15
                 + f"{'{:,.2f}'.format(((gainLoss[index]/pricePurchase[index])/daysSincePurchase)*100)}%"
-                +' '*5
+                +' '*15
             ) 
         
         # prints separator
-        print(f'-'*93 )
-        # + f'|'
+        print(f'-'*110 )
