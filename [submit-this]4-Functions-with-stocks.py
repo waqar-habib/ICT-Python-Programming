@@ -1,3 +1,13 @@
+#Waqar Habib
+
+#ICT 4370
+#Sun, Jul 10, 2022
+#Assignment 4
+
+'''
+Description: The main purpose of this program is to write functions for each of the logic that was created in earlier assignments. This week I learned how to write functions, move them to a separate module and call the module in this main file. Another major thing I learned was how to put parameters and arguments into the function as well. A few things I struggled with were using different dates for some of the stocks and refactoring the code to make them less redundant but hopefully I will have an opportunity to learn that down the road. 
+'''
+
 # working code added calculate YoY function to print statements under the table - 07/09/22 @ 11:47 pm
 
 from datetime import date
