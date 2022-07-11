@@ -7,7 +7,7 @@ def calculateYoY (symbols, gainLoss, pricePurchase):
         purchaseDate = date(2017, 8, 1)
         daysSincePurchase = ((todaysDate-purchaseDate).days)/365
         
-        # (ln 72-77) Loop through stocks & calculate % yield  
+        # Loop through stocks & calculate % yield  
         for j in range(0, len(symbols)):
             YoY = ((gainLoss[j]/pricePurchase[j])/daysSincePurchase)*100
             if YoY >= 0:

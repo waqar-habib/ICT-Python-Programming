@@ -14,7 +14,7 @@ totalNow = []
 totalPurchase = []
 gainLoss = []
 
-# (ln 15-17) prints table header
+# Prints table header
 print("\n" * 1)
 print(f" "+ ' ' * 3 + 'Stock Name' + " " *5 + 'Shares' + " " *6 + 'Price Purchase' + " " *8 + 'Price Now'+ " " *16 + 'Gain/Loss'+' '*16 + 'YoY'+' '*13 )
 print(f'-'*110)
@@ -25,14 +25,4 @@ printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
 # Calling calculateYoY as a module
 calculateYoY(symbols, gainLoss, pricePurchase)
 
-
-'''
-Note to self: 
-You created a new function calculateYoY (63-79) to print 8 statements based on if you gained/lost x% on each stock. 
-to Do:
-1. Fix formatting
-3. refactor 2nd function calculateGainLoss idk
-4. Purchase date for stocks M,F,IBM is 3 different new ones. All older ones is 8/1/2017
-
-'''
 

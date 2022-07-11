@@ -18,7 +18,7 @@ def printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss):
         purchaseDate = date(2017, 8, 1)
         daysSincePurchase = ((todaysDate-purchaseDate).days)/365
     
-        # (ln44-54)) prints each stock in separate rows in table
+        # Prints each stock in separate rows in table
         print(f" " + f" "*7 + (f"{oneStock}") +' ' * 
                 (8-len(oneStock)) + f" "*4 + f' {numberShares[index]}'+' '*10 
                 + '${:,.2f}'.format(pricePurchase[index]) 
