@@ -16,8 +16,8 @@ gainLoss = []
 
 # (ln 15-17) prints table header
 print("\n" * 1)
-print(f" "+ ' ' * 3 + 'Stock Name' + " " *5 + 'Shares' + " " *6 + 'Price Purchase' + " " *5 + 'Price Now'+ " " *5 + 'Gain/Loss'+' '*9 + 'YoY'+' '*13 )
-print(f'-'*100)
+print(f" "+ ' ' * 3 + 'Stock Name' + " " *5 + 'Shares' + " " *6 + 'Price Purchase' + " " *8 + 'Price Now'+ " " *16 + 'Gain/Loss'+' '*16 + 'YoY'+' '*13 )
+print(f'-'*110)
        
 # Calling printTable as a module
 printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
