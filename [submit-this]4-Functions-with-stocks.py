@@ -15,9 +15,9 @@ totalPurchase = []
 gainLoss = []
 
 # (ln 15-17) prints table header
-print(f'-'*100 + f'|')
-print(f"|"+ '-' * 3 + 'Stock Name' + "-" *5 + 'Shares' + "-" *6 + 'Price Purchase' + "-" *5 + 'Price Now'+ "-" *5 + 'Gain/Loss'+'-'*9 + 'YoY'+'-'*13, f'|' )
-print(f'-'*100 + f'|')
+print("\n" * 1)
+print(f" "+ ' ' * 3 + 'Stock Name' + " " *5 + 'Shares' + " " *6 + 'Price Purchase' + " " *5 + 'Price Now'+ " " *5 + 'Gain/Loss'+' '*9 + 'YoY'+' '*13 )
+print(f'-'*100)
        
 # Calling printTable as a module
 printTable(symbols, numberShares, pricePurchase, priceNow, gainLoss)
@@ -31,7 +31,7 @@ Note to self:
 You created a new function calculateYoY (63-79) to print 8 statements based on if you gained/lost x% on each stock. 
 to Do:
 1. Fix formatting
-3. refactor 2nd function calculateGainLoss
+3. refactor 2nd function calculateGainLoss idk
 4. Purchase date for stocks M,F,IBM is 3 different new ones. All older ones is 8/1/2017
 
 '''
