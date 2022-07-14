@@ -12,26 +12,22 @@ class Stocks:
         self.purchaseDate = purchaseDate
         self.symbolID = symbolID
         
-
-    
-    
-     # Method 1: Calulcating Gain/Loss on all Stocks
+    # Method 1: Calulcating Gain/Loss on all Stocks
     def calculateGainLoss(self):
         gainLoss = round(((self.priceNow - self.pricePurchase)*self.numberShares),2)
         return gainLoss
     
-    # Method 2: Calculating Gain/Loss on EACH stock. 
-    # Doing this instead of for loop from previous weeks
-    def calculateGainLossOnEach (self):
-        gainLossEach = round([(Stocks.calculateGainLoss(self))/(self.numberShares)],2)
-        return gainLossEach
+    # Method 2: Calculating Gain/Loss on EACH share. 
+    def calculateGainLossOnEachShare (self):
+        gainLossEachShare = round([(Stocks.calculateGainLoss(self))/(self.numberShares)],2)
+        return gainLossEachShare
     
     # Method 3: Calculating Gain/Loss on EACH stock. 
     def calcYoYYield(self):
         totalYield = round((self.priceNow - self.pricePurchase)/(self.pricePurchase),2)
         return totalYield
     
-    # Method 4: Calculating Gain/Loss on EACH stock. 
+    # Method 4: Calculating Year over year %. 
     def calcYoYRate(self):
         YoYRate = round((((self.priceNow - self.pricePurchase)/(self.pricePurchase))/Stocks.calculateDaysSince(self))*100,2)
         return YoYRate
@@ -50,14 +46,6 @@ class Stocks:
         print ((str (self.symbols)), (str (self.numberShares)), ("$" + str (self.pricePurchase)), ("$" + str (self.priceNow)), (self.purchaseDate), (self.symbolID),
          (str (self.coupon)), (str (self.totalYield * 100) + "%"),sep='\t\t',end="\n")
         
-#function to print the bond table header
-    def printBondHeader ():
-        print ("-" * 125)
-        print ('\t\t\t\tBond Ownership for Bob Smith')
-        print ("-" * 125)
-        print ('Bond\t\tShare#\t\tPurchase Price\tCurrent Price\tPurchase Date\t\tStockId\t\tCoupon\t\tYield')
-        print ("-" * 125)
-        
 #function to print the stock table header
     def stockTablesHeader():
         print("\n")
@@ -68,9 +56,9 @@ class Stocks:
 #function to print the stock table information
     def printStockData (self):
         print('-' *70)
-        print (f"{(str (self.symbols))}\t\t{(str (self.numberShares))}\t\t{ (Stocks.calculateGainLoss (self)) : .2f}\t\t {( (Stocks.calcYoYRate (self))):.2f}") 
+        print (f"{(str (self.symbols))}\t\t{(str (self.numberShares))}\t\t{(str (Stocks.calculateGainLoss (self)))}\t\t {( (Stocks.calcYoYRate (self))):.2f}") 
         print('-' *70)
-        
+
 
 # Creating a new class named Bonds and passing in class Stocks
 class Bonds(Stocks):
@@ -123,10 +111,13 @@ stockList['IBM'] = (Stocks ("IBM", 80, 150.37, 145.30, "2018-05-12", 8))
     
 #inputting the bond information to the bond class
 print('\nBond Table')
+print("\n" * 1)
+print(f'Bond' + " " *11 + 'Shares' + " " *6 + 'Purchased At' + " " *8 + 'Value Now'+ " " *8+ 'Date Purchased' + " " *6 + 'Quantity'+' '*10 + 'Coupon'+' '*13 + 'Yield' + " " *6)
+print(f'-'*130)
 bonds = []
 bonds.append(Bonds ("GT2:GOV", 200, 100.02, 100.05, "2017-08-01", 108, 1.38,.0135))
 
-Bonds.printBondHeader()     
+# Bonds.printBondHeader()     
 
 #calling the function to print bonds information
 for i in range(len(bonds)):
