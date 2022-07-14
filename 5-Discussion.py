@@ -40,10 +40,8 @@ class Stocks:
         daysSincePurchase = ((todaysDate - formattedPurchaseDate).days)/365
         return daysSincePurchase
     
-
-    #function to print the bond information
+    # Printing Bond Table
     def printBondTables (self):
-        
         print(tabulate({"Bond": [(str (self.symbols))],
                         "Shares": [(str (self.numberShares))],
                         "Purchased At":[("$" + str (self.pricePurchase))],
@@ -53,16 +51,10 @@ class Stocks:
                         "Coupon":[(str (self.coupon))],
                         "Yield":[((str (self.totalYield * 100) + "%"))]}
                        ,tablefmt="pretty"))
+    
         
-#function to print the stock table header
-    def stockTablesHeader():
-        print("\n")
-        print ("-" * 75)
-        print ('\nStock \t\tShare# \t\tEarnings/Loss \tYearly Earning/Loss') 
-        print ("-" * 75)
-        
-#function to print the stock table information
-    def printStockData (self):    
+    # Printing Stock Table
+    def printStockTable (self):    
         print(tabulate({"Symbols": [self.symbols],
                         "Shares": [self.numberShares],
                         "Gain/Loss":[(Stocks.calculateGainLoss (self))],
@@ -88,8 +80,6 @@ class Bonds(Stocks):
     # Method 2: Getting year over year yield rate        
     def get_YoYRate(self):
         return self.totalYield
-    print("hello")
-    
 
 class Investor:
     
@@ -98,15 +88,36 @@ class Investor:
         self.investorID = investorID
         self.investorAddress = investorAddress
         self.investorPhone = investorPhone
-         
-    def printInvestorHeader():
-        print ("-" * 50)
-        print ('investorID  \taddress \tcontactNumber')
-        print ("-" * 50)
-
+    
+    # Creating a method to print Investor table     
     def printInvestorTable (self):
-        print (self.investorID,self.investorAddress,self.investorPhone,sep= '\t')
+        print(f'-'*43)
+        print(f" "*1+'ID' + " " *8 + 'Address' + " " *12 + 'Phone')
+        print(tabulate({"ID": [self.investorID],
+                        "Address": [self.investorAddress],
+                        "Phone":[self.investorPhone]}
+                       ,tablefmt="pretty"))
         
+      
+
+    
+#inputting the bond information to the bond class
+print('\nBond Table')
+print("-" * 70)
+print(f" "*3+'Bond' + " " *3 + 'Shares' + " " *2 + 'Purchase' + " " *2 + 'Value Now'+ " " *4+ 'Date' + " " *6 + 'Qty.'+' '*2 + 'Coupon'+' '*2 + 'Yield' + " " *2)
+bonds = []
+bonds.append(Bonds ("GT2:GOV", 200, 100.02, 100.05, "2017-08-01", 108, 1.38,.0135))   
+
+#calling the function to print bonds information
+for i in range(len(bonds)):
+    bonds[i].printBondTables()
+print('\n\n')
+
+# Stock Table Header
+print('Stock Table')
+print("-" * 40)
+print(f'Stock' + " " *3 + 'Shares' + " " *3 + 'Gain/Loss' + " " *3 + 'Yield')
+
 # List of all stocks
 stockList= {}
 stockList['GOOGLE'] = (Stocks ("GOOGLE", 125, 772.88, 941.53, "2017-08-01", 1))
@@ -116,42 +127,18 @@ stockList['AIG'] = (Stocks ("AIG", 235, 54.21, 65.27, "2017-08-01", 4))
 stockList['FB'] = (Stocks ("FB", 130, 124.31, 175.45, "2017-08-01", 5))
 stockList['M'] = (Stocks ("M", 425, 30.30, 23.98, "2018-01-10", 6))
 stockList['F'] = (Stocks ("F", 85, 12.58, 10.95, "2018-02-17", 7))
-stockList['IBM'] = (Stocks ("IBM", 80, 150.37, 145.30, "2018-05-12", 8))        
+stockList['IBM'] = (Stocks ("IBM", 80, 150.37, 145.30, "2018-05-12", 8))  
 
-    
-#inputting the bond information to the bond class
-print('\nBond Table')
-print("\n" * 1)
-print(f" "*3+'Bond' + " " *3 + 'Shares' + " " *2 + 'Purchase' + " " *2 + 'Value Now'+ " " *4+ 'Date' + " " *6 + 'Qty.'+' '*2 + 'Coupon'+' '*2 + 'Yield' + " " *2)
-bonds = []
-bonds.append(Bonds ("GT2:GOV", 200, 100.02, 100.05, "2017-08-01", 108, 1.38,.0135))
-
-# Bonds.printBondHeader()     
-
-#calling the function to print bonds information
-for i in range(len(bonds)):
-    bonds[i].printBondTables()
-print('\n\n')
-# print('*'*125)
-
-# #calling the funtion to printthe bond table header
-print(f'Stock' + " " *3 + 'Shares' + " " *3 + 'Gain/Loss' + " " *3 + 'Yield')
-print(f'-'*130)
-
-#calling the function to print stocks information
+# Printing Stock Table
 for key in stockList:
-    stockList.get(key).printStockData()
+    stockList.get(key).printStockTable()
 print('\n\n')
-# print('*'*125)
 
-#inputting the investor information to the investor class
+# Data for investor table
 investors = []
 investors.append(Investor (1, "S Way St, Aurora, CO", "720-921-9999"))
-print('\n\nInvestor Table')
+print('Investor Table')
 
-#calling the funtion to printthe bond table header
-Investor.printInvestorHeader()
-
-#calling the function to print investor details
+# For loop for investor details
 for i in range(len(investors)):
     investors[i].printInvestorTable()
