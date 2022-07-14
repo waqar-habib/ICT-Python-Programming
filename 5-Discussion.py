@@ -12,12 +12,18 @@ class Stocks:
         self.symbolID = symbolID
     
     
-     # Calulcating Gain/Loss
+     # Method 1: Calulcating Gain/Loss on all Stocks
     def calculateGainLoss(self):
-        gainLoss = (self.priceNow - self.pricePurchase)*self.numberShares
+        gainLoss = round(((self.priceNow - self.pricePurchase)*self.numberShares),2)
+        return gainLoss
     
-        
-    # Calculating Days since purchase
+    # Method 2: Calculating Gain/Loss on EACH stock. 
+    # Doing this instead of for loop from previous weeks
+    def calculateGainLossOnEach(self):
+        gainLossEach = round(((Stocks.calculateGainLoss(self))/(self.numberShares)),2)
+        return gainLossEach
+    
+    # Method: 3 Calculating Days since purchase
     def calculateDaysSince(self):
         todaysDate = date.today()
         purchaseDate = date(self.purchaseDate)
