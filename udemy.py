@@ -137,3 +137,7 @@ amazon[0] = 'gum'
 # print both
 print (newCart)
 print (amazon)
+
+#***** revist list methods (sec 45/46) ****
+#***** revist dictionary (sec 52) ****
+#***** revist tuples (sec 52) ****
