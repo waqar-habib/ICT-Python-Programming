@@ -9,12 +9,18 @@ from tabulate import tabulate
 
 fileName = 'ICT-Python-Programming/ICT-Python-Programming/Dogs_Week6.csv'
 
-with open(fileName, newline='') as csvFile:
-    reader = csv.DictReader(csvFile)
-    data = list(reader)
-    print(data)
-    print(tabulate(data))
-    
-# need to convert each column from csv file to a list (see ln 8) that I can use to do math operations on like caluclate weight increase etc 
+names = []
+weights = []
+increaseYr1 = []
+increaseYr2 = []
+
+with open(fileName) as f:
+    f.readline() # Skip header line
+    csvReader = csv.reader(f)
+    for row in csvReader:
+        names.append(row[0])
+        weights.append(row[1])
+print(names)
+print(weights)
 
 
