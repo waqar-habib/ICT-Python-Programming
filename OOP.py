@@ -19,13 +19,17 @@ print(player1)
 
 '''
 # to solve, give parameter a name, pass it when instantiating the method
+
+
 class PlayerCharacter:
-   def __init__(self, name, age):
+    def run(self):
+        print('run')
+    def __init__(self, name, age):
        self.name = name #attribute
-       self.age = age #attribute
+       self.age = age #attribute are properties of class
+
     
-def run(self):
-    print('run')
+
 
 # passing name PARAMETER from ln 23
 # pass another PARAM
@@ -45,7 +49,11 @@ print(player2.name) # tom
 
 # objects make code dynamic by allowing you to substitute different PARAMS while using same object code. 
 
-# prints name and age since two params are passed
-
+# prints name and age since two params are passed. Here you are accessing the params from before
 print(f"'Name:' {player1.name}, 'Age: {player1.age}") # meelyi
 print(f"'Name:' {player2.name}, 'Age: {player2.age}") # meelyi
+
+# You also have access to the method run (ln27)
+
+print(player1.run()) # tom 
+
