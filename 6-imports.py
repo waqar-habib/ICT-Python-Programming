@@ -14,9 +14,9 @@ weights = []
 increaseYr1 = []
 increaseYr2 = []
 
-with open(fileName) as f:
-    f.readline() # Skip header line
-    csvReader = csv.reader(f)
+with open(fileName) as csvFile:
+    csvFile.readline() # Skip header line
+    csvReader = csv.reader(csvFile)
     for row in csvReader:
         names.append(row[0])
         weights.append(row[1])
