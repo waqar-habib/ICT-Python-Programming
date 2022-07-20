@@ -5,22 +5,25 @@
 #Discussion 6
 
 import csv
-from tabulate import tabulate
 
 fileName = 'ICT-Python-Programming/ICT-Python-Programming/Dogs_Week6.csv'
-
-names = []
-weights = []
-increaseYr1 = []
-increaseYr2 = []
-
-with open(fileName) as csvFile:
-    csvFile.readline() # Skip header line
-    csvReader = csv.reader(csvFile)
-    for row in csvReader:
-        names.append(row[0])
-        weights.append(row[1])
-print(names)
-print(weights)
-
-
+# open the file in read mode
+filename = open(fileName, 'r')
+ 
+# creating dictreader object
+file = csv.DictReader(filename)
+ 
+# creating empty lists
+dog = []
+weight = []
+ 
+# iterating over each row and append
+# values to empty list
+for col in file:
+    dog.append(col['Dog'])
+    weight.append(col['Weight'])
+    # totalunit.append(col['total_units'])
+ 
+# printing lists
+print('Dog:', dog)
+print('Weight:', weight)
