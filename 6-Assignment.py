@@ -1,5 +1,6 @@
 from datetime import date
 from pandas import *
+import numpy as np
 
 class Stocks:
     def __init__(self,symbols,numberShares, pricePurchase,priceNow, purchaseDate, symbolID ):
@@ -10,10 +11,13 @@ class Stocks:
         self.purchaseDate = purchaseDate
         self.symbolID = symbolID
         
-    
-
-
-
+    # Method 1: Calulcating Gain/Loss on all Stocks
+    def calculateGainLoss(self):
+        gainLoss = round(((self.priceNow - self.pricePurchase)*self.numberShares),2)
+        return gainLoss
+        
+       
+  
 
 
 # ---------- STOCKS ----------
@@ -24,12 +28,23 @@ try:
     dataStocks = read_csv(stockFile)
 
     # converting column data to list
+    symbolID = dataStocks['SYMBOL_ID'].tolist()
     symbols = dataStocks['SYMBOL'].tolist()
     numberShares = dataStocks['NO_SHARES'].tolist()
     pricePurchase = dataStocks['PURCHASE_PRICE'].tolist()
     priceNow = dataStocks['CURRENT_VALUE'].tolist()
     purchaseDate = dataStocks['PURCHASE_DATE'].tolist()
 
+    print(symbols)
+    
+    array1 = np.array1(numberShares)
+    array2 = np.array2(priceNow)
+    array2 = np.array2(pricePurchase)
+    
+    # myStock = Stocks(symbols, numberShares, pricePurchase, priceNow, purchaseDate, symbolID)
+    # myStock.calculateGainLoss()
+    # print(myStock.calculateGainLoss())  
+    
     # # printing list data
     # print('Stocks')
     # print('Symbols:', symbols)
@@ -43,7 +58,7 @@ except FileNotFoundError:
     print(stockFile + " not found")
     print("")
     
-print(dataStocks)
+# print(dataStocks)
 
 # -------- BONDS -------
 # feeding data through bond file
@@ -54,13 +69,13 @@ try:
     dataBonds = read_csv(bondFile)
 
     # converting column data to list
-    symbols = dataBonds['SYMBOL'].tolist()
-    numberShares = dataBonds['NO_SHARES'].tolist()
-    pricePurchase = dataBonds['PURCHASE_PRICE'].tolist()
-    priceNow = dataBonds['CURRENT_VALUE'].tolist()
-    bondPurchaseDate = dataBonds['PURCHASE_DATE'].tolist()
-    coupon = dataBonds['Coupon'].tolist()
-    bondYield = dataBonds['Yield'].tolist()
+    # symbols = dataBonds['SYMBOL'].tolist()
+    # numberShares = dataBonds['NO_SHARES'].tolist()
+    # pricePurchase = dataBonds['PURCHASE_PRICE'].tolist()
+    # priceNow = dataBonds['CURRENT_VALUE'].tolist()
+    # bondPurchaseDate = dataBonds['PURCHASE_DATE'].tolist()
+    # coupon = dataBonds['Coupon'].tolist()
+    # bondYield = dataBonds['Yield'].tolist()
 
     # # printing list data
     # print("Bonds")
@@ -77,4 +92,4 @@ except FileNotFoundError:
     print(bondFile + " not found")
     print("")
 
-print('\n',dataBonds)
+# print('\n',dataBonds)
