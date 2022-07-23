@@ -1,17 +1,16 @@
 from datetime import date
 from pandas import *
 
-# class Stocks:
-#     def __init__(self,symbols,numberShares, pricePurchase,priceNow, purchaseDate1, purchaseDate2, symbolID ):
-#         self.symbols = symbols
-#         self.numberShares = numberShares
-#         self.pricePurchase = pricePurchase
-#         self.priceNow = priceNow
-#         # purchaseDate1 = GOOG, MSFT,RDSA, AIG, FB
-#         self.purchaseDate1 = purchaseDate1
-#         #  purchaseDate2 = M, F, IBM
-#         self.purchaseDate2 = purchaseDate2
-#         self.symbolID = symbolID
+class Stocks:
+    def __init__(self,symbols,numberShares, pricePurchase,priceNow, purchaseDate, symbolID ):
+        self.symbols = symbols
+        self.numberShares = numberShares
+        self.pricePurchase = pricePurchase
+        self.priceNow = priceNow
+        self.purchaseDate = purchaseDate
+        self.symbolID = symbolID
+        
+    
 
 
 
@@ -31,18 +30,20 @@ try:
     priceNow = dataStocks['CURRENT_VALUE'].tolist()
     purchaseDate = dataStocks['PURCHASE_DATE'].tolist()
 
-    # printing list data
-    print('Stocks')
-    print('Symbols:', symbols)
-    print('Shares:', numberShares)
-    print('Purchase Price:', pricePurchase)
-    print('Current Price:', priceNow)
-    print('Purchase Date:', purchaseDate)
+    # # printing list data
+    # print('Stocks')
+    # print('Symbols:', symbols)
+    # print('Shares:', numberShares)
+    # print('Purchase Price:', pricePurchase)
+    # print('Current Price:', priceNow)
+    # print('Purchase Date:', purchaseDate)
 
 except FileNotFoundError:
     print("")
-    print("The file "+ stockFile + " does not exist. Please check the file path and try again.")
+    print(stockFile + " not found")
     print("")
+    
+print(dataStocks)
 
 # -------- BONDS -------
 # feeding data through bond file
@@ -61,17 +62,19 @@ try:
     coupon = dataBonds['Coupon'].tolist()
     bondYield = dataBonds['Yield'].tolist()
 
-    # printing list data
-    print("Bonds")
-    print('Symbols:', symbols)
-    print('Shares:', numberShares)
-    print('Purchase Price:', pricePurchase)
-    print('Current Price:', priceNow)
-    print('Purchase Date:', bondPurchaseDate)
-    print('Coupon:', coupon)
-    print('Yield:', bondYield)
+    # # printing list data
+    # print("Bonds")
+    # print('Symbols:', symbols)
+    # print('Shares:', numberShares)
+    # print('Purchase Price:', pricePurchase)
+    # print('Current Price:', priceNow)
+    # print('Purchase Date:', bondPurchaseDate)
+    # print('Coupon:', coupon)
+    # print('Yield:', bondYield)
 
 except FileNotFoundError:
     print("")
-    print("The file "+ bondFile + " does not exist. Please check the file path and try again.")
+    print(bondFile + " not found")
     print("")
+
+print('\n',dataBonds)
