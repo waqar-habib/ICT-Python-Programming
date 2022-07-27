@@ -6,6 +6,7 @@
 
 from datetime import datetime
 from tabulate import tabulate
+import sys
 
 def getInputFromCsv(filepath, InvestmentClass, investmentListDict):
     # Error Handling
@@ -23,6 +24,19 @@ def getInputFromCsv(filepath, InvestmentClass, investmentListDict):
         print("")
         print(filepath + " not found")
         print("")  
+        
+        
+# attempt to write to file
+def exportData(filepath, data):
+    try:
+        txt = open(filepath, "w+")
+        txt.write(data)
+        txt.close()
+
+        print(f'\033[92m Summary successfully created {filepath}. \033[0m')
+        
+    except OSError as error:
+        sys.exit(f'\n{error}.')
  
 # Creating a class named Stocks
 class Stocks:
@@ -63,34 +77,18 @@ class Stocks:
         daysSincePurchase = (((todaysDate - self.purchaseDate).days)/365)
         return daysSincePurchase
     
-    # Printing Bond Table
-    def printBondTables (self):
-        print(tabulate({"Bond": [(str (self.symbols))],
-                        "Shares": [(str (self.numberShares))],
-                        "Purchased At":[("$" + str (self.pricePurchase))],
-                        "Value Now":[("$" + str (self.priceNow))],
-                        "Date":[(self.purchaseDate)],
-                        "Quantity":[(self.symbolID)],
-                        "Coupon":[(str (self.coupon))],
-                        "Yield":[((str (self.totalYield * 100) + "%"))]}
-                       ,tablefmt="pretty"))
-    
-        
     # Printing Stock Table
     def printStockTable (self):    
-        print(tabulate({"Symbols": [self.symbols],
+        return tabulate({"Symbols": [self.symbols],
                         "Shares": [self.numberShares],
                         "Gain/Loss":[(Stocks.calculateGainLoss (self))],
                         "YoY":[(Stocks.calcYoYRate (self))]}
-                       ,tablefmt="pretty"))
-
+                       ,tablefmt="pretty")
 
 # Creating a new class named Bonds and passing in class Stocks
 class Bonds(Stocks):
-    
     # Creating a special __init__ method (aka constructor)
     def __init__ (self, stockName, stockShares, purchasePrice, currentPrice, datePurchase, stockCoupon, totalYield):
-        
         # Inherits from class Stocks
         super ().__init__ (stockName, stockShares, purchasePrice, currentPrice, f"{datePurchase}\n")
         self.coupon = stockCoupon
@@ -103,9 +101,21 @@ class Bonds(Stocks):
     # Method 2: Getting year over year yield rate        
     def get_YoYRate(self):
         return self.totalYield
+    
+    # Printing Bond Table
+    def printBondTable (self):
+        return tabulate({"Bond": [(str (self.symbols))],
+                        "Shares": [(str (self.numberShares))],
+                        "Purchased At":[("$" + str (self.pricePurchase))],
+                        "Value Now":[("$" + str (self.priceNow))],
+                        "Date":[(self.purchaseDate)],
+                        "Quantity":[(self.symbolID)],
+                        "Coupon":[(str (self.coupon))],
+                        "Yield":[((str (self.totalYield * 100) + "%"))]}
+                       ,tablefmt="pretty")
+
 
 class Investor:
-    
     # Creating a special __init__ method (aka constructor)
     def __init__ (self, investorID, investorAddress, investorPhone):
         self.investorID = investorID
@@ -114,56 +124,46 @@ class Investor:
     
     # Creating a method to print Investor table     
     def printInvestorTable (self):
-        print(f'-'*43)
-        print(f" "*1+'ID' + " " *8 + 'Address' + " " *12 + 'Phone')
-        print(tabulate({"ID": [self.investorID],
-                        "Address": [self.investorAddress],
-                        "Phone":[self.investorPhone]}
-                       ,tablefmt="pretty"))
-        
-      
+        return f'{"-"*43}\n  ID {" " *8} Address {" " *12} Phone \n {tabulate({"ID": [self.investorID], "Address": [self.investorAddress], "Phone":[self.investorPhone]} ,tablefmt="pretty")}'
+              
 # Data for investor table
 investors = []
 investors.append(Investor (1, "S Way St, Aurora, CO", "720-921-9999"))
 # print('Investor Table')
 
 # For loop for investor details
-for i in range(len(investors)):
-    investors[i].printInvestorTable()
+investorTable = investors[0].printInvestorTable()
     
 
 # Stock Table Header
-print('Stock Table')
-print("-" * 40)
-print(f'Stock' + " " *3 + 'Shares' + " " *3 + 'Gain/Loss' + " " *3 + 'Yield')
+stockTableHeader = f"""
+Stock Table
+{"-" * 40}
+{f'Stock' + " " *3 + 'Shares' + " " *3 + 'Gain/Loss' + " " *3 + 'Yield'}
+"""
 
 # List of all stocks
 stockList= {}
 
 # File name as a var that can be called in the with open function
-getInputFromCsv('ICT-Python-Programming/ICT-Python-Programming/6-stocks.csv', Stocks, stockList)
+getInputFromCsv('6-stocks.csv', Stocks, stockList)
 
 # Printing Stock Table
-for key in stockList:
-    stockList.get(key).printStockTable()
+stockRows = '\n'.join([stockList.get(key).printStockTable() for key in stockList])
     
 bondsList = {}
 
 # File name as a var that can be called in the with open function
-getInputFromCsv('ICT-Python-Programming/ICT-Python-Programming/6-bonds.csv', Bonds, bondsList)
+getInputFromCsv('6-bonds.csv', Bonds, bondsList)
 
 #inputting the bond information to the bond class
-bondsHeader = (f" "*3+'Bond' + " " *3 + 'Shares' + " " *2 + 'Purchase' + " " *2 + 'Value Now'+ " " *4+ 'Date' + " " *6 + 'Qty.'+' '*2 + 'Coupon'+' '*2 + 'Yield' + " " *2)
-
-header = f"""
+bondsHeader = f"""
 Bond Table
 {"-" * 70}
-{bondsHeader}
-"""  
-print(header)
-# Printing Stock Table
-for key in bondsList:
-    bondsList.get(key).printStockTable()
+{f" "*3+'Bond' + " " *3 + 'Shares' + " " *2 + 'Purchase' + " " *2 + 'Value Now'+ " " *4+ 'Date' + " " *6 + 'Qty.'+' '*2 + 'Coupon'+' '*2 + 'Yield' + " " *2}
+"""
+
+# Printing Bonds Table
+bondsRows = '\n'.join([bondsList.get(key).printBondTable() for key in bondsList])
     
-
-
+exportData('investorData.txt', f'{investorTable}\n{bondsHeader} \n{bondsRows} \n{stockTableHeader} \n{stockRows}')
