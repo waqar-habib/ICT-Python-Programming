@@ -29,7 +29,7 @@ c = conn.cursor()
 
 
 # # query db
-c.execute("SELECT * FROM customers")
+c.execute("SELECT rowid, * FROM customers")
 # # print(c.fetchone())
 # #print(c.fetchmany(3))
 # print(c.fetchall())
@@ -37,7 +37,7 @@ c.execute("SELECT * FROM customers")
 items = c.fetchall()
 
 for item in items:
-    print(item[0])
+    print(item)
 
 #save to DB
 conn.commit()
