@@ -109,9 +109,7 @@ class Bonds(Stocks):
                         "Purchased At":[("$" + str (self.pricePurchase))],
                         "Value Now":[("$" + str (self.priceNow))],
                         "Date":[(self.purchaseDate)],
-                        "Quantity":[(self.symbolID)],
-                        "Coupon":[(str (self.coupon))],
-                        "Yield":[((str (self.totalYield * 100) + "%"))]}
+                        "Coupon":[(str (self.coupon))]}
                        ,tablefmt="pretty")
 
 
@@ -160,7 +158,7 @@ getInputFromCsv('6-bonds.csv', Bonds, bondsList)
 bondsHeader = f"""
 Bond Table
 {"-" * 70}
-{f" "*3+'Bond' + " " *3 + 'Shares' + " " *2 + 'Purchase' + " " *2 + 'Value Now'+ " " *4+ 'Date' + " " *6 + 'Qty.'+' '*2 + 'Coupon'+' '*2 + 'Yield' + " " *2}
+{f" "*3+'Bond' + " " *3 + 'Shares' + " " *2 + 'Purchase' + " " *2 + 'Value Now'+ " " *4+ 'Date' + " " *6 + 'Coupon'+' '*2 + 'Yield' + " " *2}
 """
 
 # Printing Bonds Table
