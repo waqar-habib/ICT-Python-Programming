@@ -109,7 +109,8 @@ class Bonds(Stocks):
                         "Purchased At":[("$" + str (self.pricePurchase))],
                         "Value Now":[("$" + str (self.priceNow))],
                         "Date":[(self.purchaseDate)],
-                        "Coupon":[(str (self.coupon))]}
+                        "Coupon":[(str (self.coupon))],
+                        "Yield":[((str (self.totalYield) + "%"))]}
                        ,tablefmt="pretty")
 
 
