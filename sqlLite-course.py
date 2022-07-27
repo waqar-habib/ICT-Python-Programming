@@ -27,20 +27,23 @@ c = conn.cursor()
 
 # c.executemany("INSERT INTO customers VALUES (?,?,?)",many_customers)
 
+# update records
+c.execute("""UPDATE customers SET first_name = 'Waqar' WHERE rowid = 3
+       
+          """)
+
+#save to DB
+conn.commit()
 
 # # query db
-c.execute("SELECT * FROM customers WHERE email LIKE '%t.com'")
-# # print(c.fetchone())
-# #print(c.fetchmany(3))
-# print(c.fetchall())
+c.execute("SELECT rowid, * FROM customers")
 
 items = c.fetchall()
 
 for item in items:
     print(item)
 
-#save to DB
-conn.commit()
+
 
 #close connection
 conn.close()
