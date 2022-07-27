@@ -7,6 +7,23 @@
 from datetime import datetime
 from tabulate import tabulate
 
+def getInputFromCsv(filepath, InvestmentClass, investmentListDict):
+    # Error Handling
+    try:
+        # with open reads file and 
+        with open(filepath) as stockTable:
+            # Skipping the first line in the stockTable
+            next(stockTable)
+            for line in stockTable:
+                delimiter = line.split(',')
+                investmentListDict[delimiter[0]] = (InvestmentClass(*delimiter)) #spread operator - spread value into multiple params
+               
+
+    except FileNotFoundError:
+        print("")
+        print(filepath + " not found")
+        print("")  
+ 
 # Creating a class named Stocks
 class Stocks:
     # Creating a special __init__ method (aka constructor)
@@ -15,7 +32,7 @@ class Stocks:
         self.numberShares = float(numberShares)
         self.pricePurchase = float(pricePurchase)
         self.priceNow = float(priceNow)
-        self.purchaseDate = datetime.strptime(purchaseDate.rstrip('\n'), "%m/%d/%y").date()
+        self.purchaseDate = datetime.strptime(purchaseDate.rstrip('\n'), "%m/%d/%Y").date()
         # create a unique identifier for each row
         self.symbolID = f"{symbols.lower()}_{self.purchaseDate}" 
         
@@ -72,12 +89,12 @@ class Stocks:
 class Bonds(Stocks):
     
     # Creating a special __init__ method (aka constructor)
-    def __init__ (self, stockName, stockShares, purchasePrice, currentPrice, datePurchase, symbolID, stockCoupon, totalYield):
+    def __init__ (self, stockName, stockShares, purchasePrice, currentPrice, datePurchase, stockCoupon, totalYield):
         
         # Inherits from class Stocks
-        super ().__init__ (stockName, stockShares, purchasePrice, currentPrice, datePurchase, symbolID)
+        super ().__init__ (stockName, stockShares, purchasePrice, currentPrice, f"{datePurchase}\n")
         self.coupon = stockCoupon
-        self.totalYield = totalYield
+        self.totalYield = totalYield.rstrip('\n')
     
     # Method 1: Getting Coupons
     def get_Coupons(self):
@@ -105,55 +122,6 @@ class Investor:
                        ,tablefmt="pretty"))
         
       
-
-    
-#inputting the bond information to the bond class
-# print('\nBond Table')
-# print("-" * 70)
-# print(f" "*3+'Bond' + " " *3 + 'Shares' + " " *2 + 'Purchase' + " " *2 + 'Value Now'+ " " *4+ 'Date' + " " *6 + 'Qty.'+' '*2 + 'Coupon'+' '*2 + 'Yield' + " " *2)
-# bonds = []
-# bonds.append(Bonds ("GT2:GOV", 200, 100.02, 100.05, "2017-08-01", 108, 1.38,.0135))   
-
-#calling the function to print bonds information
-# for i in range(len(bonds)):
-#     bonds[i].printBondTables()
-# print('\n\n')
-
-# Stock Table Header
-# print('Stock Table')
-# print("-" * 40)
-# print(f'Stock' + " " *3 + 'Shares' + " " *3 + 'Gain/Loss' + " " *3 + 'Yield')
-
-# List of all stocks
-stockList= {}
-
-def getInputFromCsv(filepath):
-    # Error Handling
-    try:
-        # with open reads file and 
-        with open(filepath) as stockTable:
-            # Skipping the first line in the stockTable
-            next(stockTable)
-            # Using "," as a delimiter to separate dog names and dog weights
-            for line in stockTable:
-                delimiter = line.split(',')
-                stockList[delimiter[0]] = (Stocks (*delimiter)) #spread operator - spread value into multiple params
-                
-            
-    except FileNotFoundError:
-        print("")
-        print(filepath + " not found")
-        print("")  
- 
-# File name as a var that can be called in the with open function
-getInputFromCsv('ICT-Python-Programming/ICT-Python-Programming/6-stocks.csv')
-
-
-# Printing Stock Table
-for key in stockList:
-    stockList.get(key).printStockTable()
-# print('\n\n')
-
 # Data for investor table
 investors = []
 investors.append(Investor (1, "S Way St, Aurora, CO", "720-921-9999"))
@@ -163,3 +131,39 @@ investors.append(Investor (1, "S Way St, Aurora, CO", "720-921-9999"))
 for i in range(len(investors)):
     investors[i].printInvestorTable()
     
+
+# Stock Table Header
+print('Stock Table')
+print("-" * 40)
+print(f'Stock' + " " *3 + 'Shares' + " " *3 + 'Gain/Loss' + " " *3 + 'Yield')
+
+# List of all stocks
+stockList= {}
+
+# File name as a var that can be called in the with open function
+getInputFromCsv('ICT-Python-Programming/ICT-Python-Programming/6-stocks.csv', Stocks, stockList)
+
+# Printing Stock Table
+for key in stockList:
+    stockList.get(key).printStockTable()
+    
+bondsList = {}
+
+# File name as a var that can be called in the with open function
+getInputFromCsv('ICT-Python-Programming/ICT-Python-Programming/6-bonds.csv', Bonds, bondsList)
+
+#inputting the bond information to the bond class
+bondsHeader = (f" "*3+'Bond' + " " *3 + 'Shares' + " " *2 + 'Purchase' + " " *2 + 'Value Now'+ " " *4+ 'Date' + " " *6 + 'Qty.'+' '*2 + 'Coupon'+' '*2 + 'Yield' + " " *2)
+
+header = f"""
+Bond Table
+{"-" * 70}
+{bondsHeader}
+"""  
+print(header)
+# Printing Stock Table
+for key in bondsList:
+    bondsList.get(key).printStockTable()
+    
+
+
