@@ -6,10 +6,7 @@ conn = sqlite3.connect('customer.db')
 #create a cursor (c)
 c = conn.cursor()
 
-
-
-
-#create a table
+# create a table
 # DATATYPES = null, real (10.5), integers (10), text (string), blob(images etc..)
 
 # c.execute("""CREATE TABLE customers (
@@ -21,7 +18,7 @@ c = conn.cursor()
 # insert first entry
 # c.execute("INSERT INTO customers (first_name, last_name, email) VALUES ('John', 'Elder', 'john@codemy.com')""")
 
-# #insert many entries
+#insert many entries
 # many_customers = [
 #     ('a','b','a.b@t.com'),
 #     ('w','h','w.h@t.com'),
@@ -31,11 +28,11 @@ c = conn.cursor()
 # c.executemany("INSERT INTO customers VALUES (?,?,?)",many_customers)
 
 
-# query db
+# # query db
 c.execute("SELECT * FROM customers")
-# print(c.fetchone())
-#print(c.fetchmany(3))
-#print(c.fetchall())
+# # print(c.fetchone())
+# #print(c.fetchmany(3))
+# print(c.fetchall())
 
 items = c.fetchall()
 
