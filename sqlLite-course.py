@@ -19,23 +19,28 @@ c = conn.cursor()
 # )""")
 
 # insert first entry
-c.execute("INSERT INTO customers (first_name, last_name, email) VALUES ('John', 'Elder', 'john@codemy.com')""")
+# c.execute("INSERT INTO customers (first_name, last_name, email) VALUES ('John', 'Elder', 'john@codemy.com')""")
 
-#insert many entries
-many_customers = [
-    ('a','b','a.b@t.com'),
-    ('w','h','w.h@t.com'),
-    ('m','k','m.k@t.com'),
-    ]
+# #insert many entries
+# many_customers = [
+#     ('a','b','a.b@t.com'),
+#     ('w','h','w.h@t.com'),
+#     ('m','k','m.k@t.com'),
+#     ]
 
-c.executemany("INSERT INTO customers VALUES (?,?,?)",many_customers)
+# c.executemany("INSERT INTO customers VALUES (?,?,?)",many_customers)
 
 
 # query db
 c.execute("SELECT * FROM customers")
-# c.fetchone()
-# c.fetchmany(3)
-print(c.fetchall())
+# print(c.fetchone())
+#print(c.fetchmany(3))
+#print(c.fetchall())
+
+items = c.fetchall()
+
+for item in items:
+    print(item[0])
 
 #save to DB
 conn.commit()
