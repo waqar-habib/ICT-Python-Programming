@@ -29,7 +29,7 @@ c = conn.cursor()
 
 
 # # query db
-c.execute("SELECT rowid, * FROM customers")
+c.execute("SELECT * FROM customers WHERE email LIKE '%t.com'")
 # # print(c.fetchone())
 # #print(c.fetchmany(3))
 # print(c.fetchall())
