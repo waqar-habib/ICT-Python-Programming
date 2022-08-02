@@ -16,21 +16,27 @@ c = conn.cursor()
 # )""")
 
 # insert first entry
-# c.execute("INSERT INTO customers (first_name, last_name, email) VALUES ('John', 'Elder', 'john@codemy.com')""")
+# c.execute("INSERT INTO customers (first_name, last_name, email) VALUES ('Waqar', 'Habib', 'waqar@codemy.com')""")
 
 #insert many entries
 # many_customers = [
-#     ('a','b','a.b@t.com'),
-#     ('w','h','w.h@t.com'),
-#     ('m','k','m.k@t.com'),
+#     ('mahad','abdullah','a.b@t.com'),
+#     ('aliya','meher','w.h@t.com'),
+#     ('meri','cordaro','m.k@t.com'),
 #     ]
 
 # c.executemany("INSERT INTO customers VALUES (?,?,?)",many_customers)
 
 # update records
-c.execute("""UPDATE customers SET first_name = 'Waqar' WHERE rowid = 3
+# c.execute("""UPDATE customers SET first_name = 'Waqar' WHERE rowid = 3
        
-          """)
+#           """)
+
+
+# delete records
+# c.execute("""DELETE FROM customers WHERE rowid = 4
+        
+#           """)
 
 #save to DB
 conn.commit()
