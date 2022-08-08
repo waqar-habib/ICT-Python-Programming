@@ -17,8 +17,8 @@ def dataConstruct(stocksListJSON, stocksListCSV, colors):
     return stocksDictionary
 
 def main():
-    stockDataJSON = get_JSON('data/AllStocks.json')
-    stocksListCSV = get_CSV('data/stocks.csv')
+    stockDataJSON = get_JSON('AllStocks.json')
+    stocksListCSV = get_CSV('stocks.csv')
     databaseMgmt = Database('database.db')
     databaseMgmt.addInvestment(stockDataJSON)
     colors = {'GOOG':'navy', 'MSFT':'red','RDS-A': 'teal','AIG': 'crimson','FB': 'orangered','M':'lime','F': 'black','IBM':'yellow'}
@@ -27,7 +27,7 @@ def main():
     stocksDictionary = dataConstruct(stockDataJSON, stocksListCSV, colors)
     fig, axis = plt.subplots()
     for stock in stocksDictionary.values():
-        axis.step(stock.years, stock.priceNowList, stock.color, label=stock.name)
+        axis.step(stock.years, stock.priceNowList, stock.color, label=stock.name, linewidth=0.5)
 
     axis.set_xticks(xAxis)
     fig.autofmt_xdate()
@@ -41,3 +41,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
