@@ -2,9 +2,7 @@ import sqlite3
 
 class databaseUtilities:
     def create_db(self, file_path):
-        # create empty database
         self.connection = sqlite3.connect(file_path)
-        # establish connection to the DB
         self.cursor = self.connection.cursor()
         print(f"Database...Done")
 
@@ -26,7 +24,7 @@ class databaseUtilities:
         except OSError as error:
             print(f"Error: '{error}'")
 
-    def fetchDataFromDB(self, query):
+    def getData(self, query):
         try:
             self.cursor.execute(query)
             # fetch all rows and convert tuple -> array

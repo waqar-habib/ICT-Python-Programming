@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-# local modules
 from modules.utilities import get_JSON, get_CSV
 from modules.stock import Stock
 from modules.databaseManagement import Database
@@ -54,7 +53,7 @@ def main():
 
     # create plots from the data
     for stock in stocksDictionary.values():
-        axis.plot(stock.years, stock.priceNowList, stock.color, label=stock.name)
+        axis.plot(stock.years, stock.priceNowList, stock.color, label=stock.name,linewidth=3.0)
 
     axis.set_xticks(xAxis)
     fig.autofmt_xdate()
