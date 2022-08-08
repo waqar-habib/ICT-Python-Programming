@@ -19,7 +19,7 @@ class databaseUtilities:
         except OSError as error:
             print(f"Error: '{error}'")
 
-    def add_to_table(self, table_name, query, values):
+    def insertIntoTable(self, table_name, query, values):
         try:
             self.cursor.execute(f"INSERT or REPLACE INTO {table_name} {query}", values)
             self.connection.commit()

@@ -17,13 +17,13 @@ class Database():
             self.add_stock(*list(stock.values()))
 
     def add_stock(self,Symbol,Date,Open,High,Low,Close,Volume):
-        stock_id = f"{Symbol}_{Date}".lower()
-        formatted_date = datetime.strptime(Date, '%d-%b-%y').date().strftime('%Y-%m-%d')
+        stockID = f"{Symbol}_{Date}".lower()
+        dateFormatted = datetime.strptime(Date, '%d-%b-%y').date().strftime('%Y-%m-%d')
 
-        self.db.add_to_table("stock", "VALUES (?,?,?,?,?,?,?,?)", (
-            stock_id,
+        self.db.insertIntoTable("stock", "VALUES (?,?,?,?,?,?,?,?)", (
+            stockID,
             Symbol,
-            formatted_date,
+            dateFormatted,
             Open,
             High,
             Low,
@@ -32,5 +32,5 @@ class Database():
         ))
 
     def fetch_stocks_data_from_db(self, symbol=None):
-        filter_by_stock = f'WHERE symbol="{symbol}"' if symbol else ''
-        return self.db.fetchDataFromDB(f'SELECT symbol, date, open, high, low, close, volume FROM stock {filter_by_stock} ORDER BY date ASC')
+        stockFilter = f'WHERE symbol="{symbol}"' if symbol else ''
+        return self.db.fetchDataFromDB(f'SELECT symbol, date, open, high, low, close, volume FROM stock {stockFilter} ORDER BY date ASC')

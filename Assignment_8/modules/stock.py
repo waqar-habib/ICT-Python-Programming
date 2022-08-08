@@ -4,7 +4,7 @@ class Stock():
     def __init__(self, symbols, numShares, color, date, priceEOD):
         self.name = symbols.upper()
         self.numShares = numShares
-        self.stock_id = f"{symbols}_{date}".lower()
+        self.stockID = f"{symbols}_{date}".lower()
         self.color = color
 
         self.years = []

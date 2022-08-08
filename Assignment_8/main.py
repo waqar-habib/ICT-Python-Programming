@@ -50,14 +50,17 @@ def main():
     stocksDictionary = dataConstruct(stockDataJSON, stocksListCSV, colors)
 
     # create fig, ax from subplots
-    fig, ax = plt.subplots()
+    fig, axis = plt.subplots()
 
     # create plots from the data
     for stock in stocksDictionary.values():
-        ax.plot(stock.years, stock.priceNowList, stock.color, label=stock.name)
+        axis.plot(stock.years, stock.priceNowList, stock.color, label=stock.name)
 
-    ax.set_xticks(xAxis)
+    axis.set_xticks(xAxis)
     fig.autofmt_xdate()
+    plt.title("Value of Stocks Over Time")
+    plt.xlabel('Year/Month') 
+    plt.ylabel('Value ($)')
     plt.legend()
     print(f"Plotting...Done")
     plt.savefig('plot.png')
