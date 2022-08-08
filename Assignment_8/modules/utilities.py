@@ -2,28 +2,22 @@ from pandas import read_csv
 import json
 import sys
 
-# read from JSON file and return
-def get_JSON(file_path):
+def get_JSON(fileDir):
     try:
-        # open file
-        data_from_file = open(file_path)
-        # read data from the file as JSON
-        JSON_response = json.load(data_from_file)
-        # close file
-        data_from_file.close()
+        fileData = open(fileDir)
+        response = json.load(fileData)
+        fileData.close()
 
-        return JSON_response
+        return response
     except OSError as error:
         sys.exit(f'\n{error}.')
 
-# read from CSV and return rows as lists
-def get_CSV(file_path):
+def get_CSV(fileDir):
     try:
-        # import data from the csv file using
-        data_from_csv = read_csv(file_path, header = 0, sep =',')
-        header_list = data_from_csv.columns
-        stocks_dict = {key: value for key, value in data_from_csv.values}
+        csvData = read_csv(fileDir, header = 0, sep =',')
+        headers = csvData.columns
+        stocks = {key: value for key, value in csvData.values}
 
-        return stocks_dict
+        return stocks
     except OSError as error:
         sys.exit(f'\n{error}.')

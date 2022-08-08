@@ -1,19 +1,17 @@
 import sqlite3
 
 class databaseUtilities:
-    def create_db(self, file_path):
-        self.connection = sqlite3.connect(file_path)
+    def createDatabase(self, fileDir):
+        self.connection = sqlite3.connect(fileDir)
         self.cursor = self.connection.cursor()
         print(f"Database...Done")
-
         return self.connection, self.cursor
 
-    def create_table(self, table_name, query):
+    def drawTable(self, table_name, query):
         try:
-            isTableExist = self.cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}'").fetchall()
-            if isTableExist == []:
+            doesTableExist = self.cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{table_name}'").fetchall()
+            if doesTableExist == []:
                 self.cursor.execute(f"CREATE TABLE {table_name} {query}")
-                print(f"{table_name} table created successfully")
         except OSError as error:
             print(f"Error: '{error}'")
 
@@ -27,7 +25,6 @@ class databaseUtilities:
     def getData(self, query):
         try:
             self.cursor.execute(query)
-            # fetch all rows and convert tuple -> array
             return [list(row) for row in self.cursor.fetchall()]
         except OSError as error:
             print(f"Error: '{error}'")

@@ -2,10 +2,10 @@ from datetime import datetime
 from modules.databaseUtilities import databaseUtilities
 
 class Database():
-    def __init__(self, db_file):
+    def __init__(self, dataFromDatabase):
         self.db = databaseUtilities()
-        self.db.create_db(db_file)
-        self.db.create_table("stock", "(id text PRIMARY KEY, symbol text, date text, open text, high text, low text, close integer, volume integer)")
+        self.db.createDatabase(dataFromDatabase)
+        self.db.drawTable("stock", "(id text PRIMARY KEY, symbol text, date text, open text, high text, low text, close integer, volume integer)")
 
     def close(self):
         self.db.connection.close()

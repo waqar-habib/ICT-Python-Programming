@@ -19,41 +19,15 @@ def dataConstruct(stocksListJSON, stocksListCSV, colors):
 def main():
     stockDataJSON = get_JSON('data/AllStocks.json')
     stocksListCSV = get_CSV('data/stocks.csv')
-
-    databaseMgmt = Database('stocks_data.db')
+    databaseMgmt = Database('database.db')
     databaseMgmt.addInvestment(stockDataJSON)
-    colors = {
-                'GOOG':'navy', 
-                'MSFT':'red', 
-                'RDS-A': 'teal', 
-                'AIG': 'crimson', 
-                'FB': 'orangered', 
-                'M':'lime', 
-                'F': 'black', 
-                'IBM':'yellow'
-                }
+    colors = {'GOOG':'navy', 'MSFT':'red','RDS-A': 'teal','AIG': 'crimson','FB': 'orangered','M':'lime','F': 'black','IBM':'yellow'}
 
-    xAxis = [
-                '2015-08', 
-                '2015-10',
-                '2016-01', 
-                '2016-04', 
-                '2016-07',
-                '2016-10',
-                '2017-01',
-                '2017-04',
-                '2017-07'
-                ]
-
-    # format data to simplify plotting
+    xAxis = ['2015-08','2015-10','2016-01','2016-04','2016-07','2016-10','2017-01','2017-04','2017-07']
     stocksDictionary = dataConstruct(stockDataJSON, stocksListCSV, colors)
-
-    # create fig, ax from subplots
     fig, axis = plt.subplots()
-
-    # create plots from the data
     for stock in stocksDictionary.values():
-        axis.plot(stock.years, stock.priceNowList, stock.color, label=stock.name,linewidth=3.0)
+        axis.step(stock.years, stock.priceNowList, stock.color, label=stock.name)
 
     axis.set_xticks(xAxis)
     fig.autofmt_xdate()
@@ -63,8 +37,6 @@ def main():
     plt.legend()
     print(f"Plotting...Done")
     plt.savefig('plot.png')
-
-    # close database connection
     databaseMgmt.close()
 
 if __name__ == '__main__':

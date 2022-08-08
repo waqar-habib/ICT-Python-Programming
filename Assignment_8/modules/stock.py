@@ -6,11 +6,9 @@ class Stock():
         self.numShares = numShares
         self.stockID = f"{symbols}_{date}".lower()
         self.color = color
-
         self.years = []
         self.priceEODList = []
         self.priceNowList = []
-
         self.createList(date, priceEOD)
 
     def priceNowFunc(self, priceEOD):
@@ -18,7 +16,6 @@ class Stock():
 
     def createList(self, date, priceEOD):
         yearAndMonth = datetime.strptime(date, '%d-%b-%y').date().strftime('%Y-%m')
-
         self.years.append(yearAndMonth)
         self.priceEODList.append(float(priceEOD))
         self.priceNowList.append(self.priceNowFunc(priceEOD))
