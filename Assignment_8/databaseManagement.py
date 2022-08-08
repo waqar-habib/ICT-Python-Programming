@@ -1,5 +1,5 @@
 from datetime import datetime
-from modules.databaseUtilities import databaseUtilities
+from databaseUtilities import databaseUtilities
 
 class Database():
     def __init__(self, dataFromDatabase):

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
-from modules.utilities import get_JSON, get_CSV
-from modules.stock import Stock
-from modules.databaseManagement import Database
+from utilities import get_JSON, get_CSV
+from stock import Stock
+from databaseManagement import Database
 
 def dataConstruct(stocksListJSON, stocksListCSV, colors):
     stocksDictionary = {}
